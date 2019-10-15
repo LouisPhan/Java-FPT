@@ -10,7 +10,7 @@ package java1;
  * @author MyPC
  */
 class SinhVien{
-
+    private String hoTen;
 }
 
 public class Lab6_3 {

@@ -5,6 +5,7 @@
  */
 package java1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -58,25 +59,27 @@ class SinhVien{
         System.out.println("Nhap ho ten: ");
         setHoTen(scan.nextLine());
 //Nhap email
-        String checkEmail = "\\w+@\\w+(\\.\\w){1,2}";
-        System.out.println("Nhap email: ");
+        String checkEmail = "^[a-zA-Z]+\\w*@{1}[a-zA-Z]+mail.com";    
+        System.out.println("Nhap dia chi email");
         setEmail(scan.nextLine());
-        if(!getEmail().equals(checkEmail)){
+        while(!getEmail().matches(checkEmail)){
+            System.out.println("Email trong hoac sai dinh dang");
             setEmail(scan.nextLine());
         }
         
 //So dien thoai
-        String checkPhone = "(0||+84)[0-9]{9}";
+        String checkPhone = "(0)\\d{9}";
         System.out.println("Nhap so dien thoai: ");
         setPhone(scan.nextLine());
-        if(!getPhone().equalsIgnoreCase(checkPhone)){
+        while(!getPhone().matches(checkPhone)){
+            System.out.println("So dien thoai khong duoc trong hoac sai dinh dang");
             setPhone(scan.nextLine());
         }
 //CMND
-        String checkID = "[0-9]{12}";
+        String checkID = "\\d{12}";
         System.out.println("Nhap CMND: ");
         setCmnd(scan.nextLine());
-        while(getCmnd().equalsIgnoreCase(checkID)){
+        while(!getCmnd().matches(checkID)){
             setCmnd(scan.nextLine());
         }
         System.out.println("========================================");
@@ -93,5 +96,17 @@ class SinhVien{
 }
 
 public class Lab6_3 {
-    
+    public static void main(String[] args) {
+        ArrayList<SinhVien> sinhVien = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            SinhVien sv = new SinhVien();
+            sv.Nhap();
+            sinhVien.add(sv);
+        }
+        
+        sinhVien.forEach((x) -> {
+            x.Xuat();
+        });
+    }
+     
 }
